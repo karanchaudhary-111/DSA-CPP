@@ -1,17 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int removeDup(vector<int> &nums){
+void moveZeroToEnd(vector<int>& nums){
     int n = nums.size();
 
-    int idx = 1;
+    int idx = 0;
 
-    for(int i = 1; i < n; i++){
-        if(nums[i] != nums[i-1]){
+    for(int i = 0; i < n; i++){
+        if(nums[i] != 0){
             nums[idx++] = nums[i];
         }
     }
-    return idx;
+
+    for(int i = idx; i < n; i++){
+        nums[i] = 0;
+    }
 }
 
 int main() {
@@ -24,10 +27,10 @@ int main() {
         cin >> arr[i];
     }
 
-    int k = removeDup(arr);
+    moveZeroToEnd(arr);
 
-    for(int i = 0; i < k; i++){
+    for(int i = 0; i < n; i++){
         cout << arr[i] << " ";
     }
-    
+
 }
