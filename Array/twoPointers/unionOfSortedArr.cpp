@@ -10,27 +10,18 @@ vector<int> unionOfSortedArr(vector<int>& nums1, vector<int>& nums2){
     vector<int> ans;
 
     while(i < n1 && j < n2){
-        if(nums1[i] != nums2[j]){
-            if(nums1[i] < nums2[j] && (ans.empty() || nums1[i] != ans.back())){
+        if(nums1[i] < nums2[j]){
+            if(ans.empty() || ans.back() != nums1[i]){
                 ans.push_back(nums1[i]);
-                i++;
-            }else{
-                i++;
             }
-            
-            if(nums2[j] < nums1[i] && (ans.empty() || nums2[j] != ans.back())){
+            i++;
+        }else if(nums1[i] > nums2[j]){
+            if(ans.empty() || ans.back() != nums2[j]){
                 ans.push_back(nums2[j]);
-                j++;
-            }else{
-                j++;
-            }
-
+            }j++;
         }else{
-            if(nums1[i] != ans.back()){
-                ans.push_back(nums1[i]);
-                i++;
-                j++;
-            }
+            ans.push_back(nums1[i]);
+            i++; j++;
         }
     }
 
